@@ -1,0 +1,5 @@
+# robots.txt for Infinity Advertising Pvt. Ltd.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.infinityadv.com.np/sitemap.xml
