@@ -15,6 +15,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms }) =>
 
   const navLinks = [
     { label: 'Home', path: '/' },
+    { label: 'About Us', path: '/about' },
     { label: 'Our Services', path: '/services' },
     { label: 'Portfolio Gallery', path: '/portfolio' },
     { label: 'Valuable Clients', path: '/clients' },
