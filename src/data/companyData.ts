@@ -15,7 +15,8 @@ export const COMPANY_INFO = {
   altEmail: "adv_infinity@yahoo.com",
   websiteUrl: "https://www.infinityadv.com.np",
   workingHours: "Sunday – Friday: 9:30 AM – 6:00 PM (Saturday: Closed)",
-  googleMapsEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.7482833076135!2d85.31110777598852!3d27.694154976191068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19b48c7be867%3A0xc48ad1828bf7f5f!2sBlue%20Star%20Complex%2C%20Tripureshwor%2C%20Kathmandu!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp",
+  googleMapsEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.8987449637657!2d85.31481527598576!3d27.691768376190785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1850c11234ad%3A0x67afb1fc8769c88c!2sInfinity%20Advertising%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1732613800000!5m2!1sen!2snp",
+  googleMapsLink: "https://maps.app.goo.gl/cww8nFSZc7pE3bqFA",
 };
 
 export const SISTER_FACILITIES = [

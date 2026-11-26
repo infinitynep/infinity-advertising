@@ -241,7 +241,7 @@ export const ContactPage: React.FC = () => {
                 <div className="p-4 bg-brand-light border-b border-brand-light-gray flex items-center justify-between text-xs font-bold text-brand-charcoal">
                   <span>Tripureshwor, Kathmandu Headquarters</span>
                   <a
-                    href="https://maps.google.com/?q=Blue+Star+Complex+Tripureshwor+Kathmandu"
+                    href="https://maps.app.goo.gl/cww8nFSZc7pE3bqFA"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-brand-blue hover:underline inline-flex items-center space-x-1"
