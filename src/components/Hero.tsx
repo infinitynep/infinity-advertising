@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles, Target, Compass, Megaphone } from 'lucide-react';
 import { COMPANY_INFO } from '../data/companyData';
 import { InfinityBackground } from './InfinityBackground';
@@ -8,16 +9,7 @@ interface HeroProps {
   onStartProject?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onExploreWork, onStartProject }) => {
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const offset = 80;
-      const pos = el.getBoundingClientRect().top + window.pageYOffset - offset;
-      window.scrollTo({ top: pos, behavior: 'smooth' });
-    }
-  };
-
+export const Hero: React.FC<HeroProps> = () => {
   return (
     <section id="home" className="relative min-h-[90vh] flex items-center justify-center pt-8 pb-16 lg:py-24 overflow-hidden bg-gradient-to-b from-brand-light/50 via-white to-white">
       {/* Background Vector Art & Infinity Glow */}
@@ -65,44 +57,36 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onStartProject }) => 
 
             {/* CTA Action Buttons */}
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-5">
-              <button
-                type="button"
-                onClick={() => {
-                  if (onExploreWork) onExploreWork();
-                  else scrollTo('portfolio');
-                }}
+              <Link
+                to="/portfolio"
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-brand-blue to-brand-cyan text-white font-semibold text-base shadow-brand-lg hover:shadow-brand hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center space-x-3 group"
               >
                 <span>Explore Our Work</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </button>
+              </Link>
 
-              <button
-                type="button"
-                onClick={() => {
-                  if (onStartProject) onStartProject();
-                  else scrollTo('contact');
-                }}
+              <Link
+                to="/contact"
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-brand-charcoal font-semibold text-base border-2 border-brand-charcoal/15 hover:border-brand-blue hover:text-brand-blue hover:bg-brand-light/50 transition-all duration-300 flex items-center justify-center space-x-2"
               >
                 <span>Let's Start a Project</span>
-              </button>
+              </Link>
             </div>
 
             {/* Agency Value Highlights */}
             <div className="pt-8 border-t border-brand-light-gray/80 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
-              <div className="text-left">
-                <div className="text-xs uppercase tracking-wider font-semibold text-brand-blue">Strategic</div>
+              <Link to="/services" className="text-left group">
+                <div className="text-xs uppercase tracking-wider font-semibold text-brand-blue group-hover:underline">Strategic</div>
                 <div className="text-xs text-brand-charcoal/70">Brand Development</div>
-              </div>
-              <div className="text-left border-l border-brand-light-gray pl-4">
-                <div className="text-xs uppercase tracking-wider font-semibold text-brand-cyan">360° ATL & BTL</div>
+              </Link>
+              <Link to="/services" className="text-left border-l border-brand-light-gray pl-4 group">
+                <div className="text-xs uppercase tracking-wider font-semibold text-brand-cyan group-hover:underline">360° ATL & BTL</div>
                 <div className="text-xs text-brand-charcoal/70">Advertising Solutions</div>
-              </div>
-              <div className="text-left border-l border-brand-light-gray pl-4">
-                <div className="text-xs uppercase tracking-wider font-semibold text-brand-charcoal">Experiential</div>
+              </Link>
+              <Link to="/services" className="text-left border-l border-brand-light-gray pl-4 group">
+                <div className="text-xs uppercase tracking-wider font-semibold text-brand-charcoal group-hover:underline">Experiential</div>
                 <div className="text-xs text-brand-charcoal/70">Event Management</div>
-              </div>
+              </Link>
             </div>
           </div>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowUp, Phone, Mail, MapPin, ExternalLink, Shield, FileText } from 'lucide-react';
 import { COMPANY_INFO, SERVICES } from '../data/companyData';
 
@@ -13,27 +14,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms }) =>
   };
 
   const navLinks = [
-    { label: 'Home', href: '#home' },
-    { label: 'About Infinity', href: '#about' },
-    { label: 'Our Services', href: '#services' },
-    { label: 'Portfolio', href: '#portfolio' },
-    { label: 'Agency Philosophy', href: '#philosophy' },
-    { label: 'Five-Step Process', href: '#process' },
-    { label: 'Valuable Clients', href: '#clients' },
-    { label: 'Insights & Blog', href: '#insights' },
-    { label: 'Contact Us', href: '#contact' },
+    { label: 'Home', path: '/' },
+    { label: 'Our Services', path: '/services' },
+    { label: 'Portfolio Gallery', path: '/portfolio' },
+    { label: 'Valuable Clients', path: '/clients' },
+    { label: 'Insights & Blog', path: '/insights' },
+    { label: 'Contact Us', path: '/contact' },
   ];
-
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const id = href.replace('#', '');
-    const el = document.getElementById(id);
-    if (el) {
-      const offset = 80;
-      const pos = el.getBoundingClientRect().top + window.pageYOffset - offset;
-      window.scrollTo({ top: pos, behavior: 'smooth' });
-    }
-  };
 
   return (
     <footer className="bg-brand-charcoal text-white pt-16 pb-12 border-t border-white/10 relative overflow-hidden">
@@ -49,13 +36,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms }) =>
           
           {/* Column 1: Logo & Agency Bio (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="flex items-center space-x-3">
+            <Link to="/" className="inline-block">
               <img
                 src="/assets/infinity-logo.png"
                 alt="Infinity Advertising Pvt. Ltd."
                 className="h-12 w-auto object-contain bg-white/95 px-3 py-1.5 rounded-xl shadow-sm"
               />
-            </div>
+            </Link>
 
             <div className="italic text-brand-cyan text-sm font-semibold tracking-wide">
               "{COMPANY_INFO.tagline}"
@@ -77,18 +64,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms }) =>
           {/* Column 2: Quick Links (2 cols) */}
           <div className="lg:col-span-2 space-y-4">
             <h4 className="text-xs uppercase tracking-widest font-bold text-brand-cyan">
-              Navigation
+              Pages
             </h4>
             <ul className="space-y-2.5 text-xs text-white/75">
-              {navLinks.slice(0, 6).map((link, idx) => (
+              {navLinks.map((link, idx) => (
                 <li key={idx}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleSmoothScroll(e, link.href)}
+                  <Link
+                    to={link.path}
                     className="hover:text-brand-cyan transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -102,32 +88,29 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms }) =>
             <ul className="space-y-2.5 text-xs text-white/75">
               {SERVICES.map((s) => (
                 <li key={s.id}>
-                  <a
-                    href="#services"
-                    onClick={(e) => handleSmoothScroll(e, '#services')}
+                  <Link
+                    to={`/services#${s.id}`}
                     className="hover:text-brand-cyan transition-colors"
                   >
                     {s.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li>
-                <a
-                  href="#services"
-                  onClick={(e) => handleSmoothScroll(e, '#services')}
+                <Link
+                  to="/services#advertising-solutions"
                   className="hover:text-brand-cyan transition-colors"
                 >
                   ATL & BTL Campaigns
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#services"
-                  onClick={(e) => handleSmoothScroll(e, '#services')}
+                <Link
+                  to="/services#event-management"
                   className="hover:text-brand-cyan transition-colors"
                 >
-                  TVC & Audio Production
-                </a>
+                  Turnkey Events
+                </Link>
               </li>
             </ul>
           </div>
@@ -160,14 +143,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms }) =>
             </div>
 
             <div className="pt-2">
-              <a
-                href="#contact"
-                onClick={(e) => handleSmoothScroll(e, '#contact')}
+              <Link
+                to="/contact"
                 className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors"
               >
-                <span>Request Agency Consultation</span>
+                <span>Request Consultation</span>
                 <ExternalLink className="w-3 h-3" />
-              </a>
+              </Link>
             </div>
           </div>
 

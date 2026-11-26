@@ -1,66 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowUpRight, Phone, Mail } from 'lucide-react';
 import { COMPANY_INFO } from '../data/companyData';
 
-interface HeaderProps {
-  onOpenContact?: () => void;
-}
-
-export const Header: React.FC<HeaderProps> = ({ onOpenContact }) => {
+export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
-
-      // Section scrollspy
-      const sections = ['home', 'about', 'services', 'portfolio', 'philosophy', 'process', 'clients', 'insights', 'contact'];
-      const scrollPos = window.scrollY + 140;
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: 'Home', href: '#home', id: 'home' },
-    { label: 'About', href: '#about', id: 'about' },
-    { label: 'Services', href: '#services', id: 'services' },
-    { label: 'Portfolio', href: '#portfolio', id: 'portfolio' },
-    { label: 'Clients', href: '#clients', id: 'clients' },
-    { label: 'Insights', href: '#insights', id: 'insights' },
-    { label: 'Contact', href: '#contact', id: 'contact' },
-  ];
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
+  // Close mobile menu on route change
+  useEffect(() => {
     setMobileMenuOpen(false);
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    if (element) {
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
+  }, [location.pathname]);
+
+  const navLinks = [
+    { label: 'Home', path: '/' },
+    { label: 'Services', path: '/services' },
+    { label: 'Portfolio', path: '/portfolio' },
+    { label: 'Clients', path: '/clients' },
+    { label: 'Insights', path: '/insights' },
+    { label: 'Contact', path: '/contact' },
+  ];
 
   return (
     <>
@@ -104,9 +73,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Official Logo */}
-            <a
-              href="#home"
-              onClick={(e) => handleNavClick(e, '#home')}
+            <Link
+              to="/"
               className="group flex items-center space-x-3 transition-transform focus:outline-none"
               aria-label="Infinity Advertising Pvt. Ltd. Home"
             >
@@ -115,45 +83,45 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact }) => {
                 alt="Infinity Advertising Pvt. Ltd."
                 className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
               />
-            </a>
+            </Link>
 
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2" aria-label="Main Navigation">
               {navLinks.map((link) => {
-                const isActive = activeSection === link.id;
                 return (
-                  <a
-                    key={link.id}
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
-                    className={`relative px-3.5 py-2 text-sm font-medium transition-colors duration-200 rounded-md ${
-                      isActive
-                        ? 'text-brand-blue font-semibold'
-                        : 'text-brand-charcoal/80 hover:text-brand-blue hover:bg-brand-light/60'
-                    }`}
+                  <NavLink
+                    key={link.path}
+                    to={link.path}
+                    className={({ isActive }) =>
+                      `relative px-3.5 py-2 text-sm font-medium transition-colors duration-200 rounded-md ${
+                        isActive
+                          ? 'text-brand-blue font-bold'
+                          : 'text-brand-charcoal/80 hover:text-brand-blue hover:bg-brand-light/60'
+                      }`
+                    }
                   >
-                    {link.label}
-                    {isActive && (
-                      <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-brand-blue to-brand-cyan rounded-full" />
+                    {({ isActive }) => (
+                      <>
+                        <span>{link.label}</span>
+                        {isActive && (
+                          <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-brand-blue to-brand-cyan rounded-full" />
+                        )}
+                      </>
                     )}
-                  </a>
+                  </NavLink>
                 );
               })}
             </nav>
 
             {/* CTA Button: Let's Talk */}
             <div className="hidden sm:flex items-center space-x-3">
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  handleNavClick(e, '#contact');
-                  if (onOpenContact) onOpenContact();
-                }}
+              <Link
+                to="/contact"
                 className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-brand-blue to-brand-cyan text-white text-sm font-semibold shadow-brand hover:shadow-brand-lg transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
               >
                 <span>Let's Talk</span>
                 <ArrowUpRight className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -177,33 +145,30 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact }) => {
         >
           <div className="px-5 pt-3 pb-6 space-y-1">
             {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
+              const isActive = location.pathname === link.path;
               return (
-                <a
-                  key={link.id}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setMobileMenuOpen(false)}
                   className={`block px-4 py-2.5 rounded-lg text-base font-medium transition-colors ${
                     isActive
-                      ? 'bg-brand-light text-brand-blue font-semibold border-l-4 border-brand-blue'
+                      ? 'bg-brand-light text-brand-blue font-bold border-l-4 border-brand-blue'
                       : 'text-brand-charcoal/80 hover:bg-brand-light/60 hover:text-brand-blue'
                   }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               );
             })}
             <div className="pt-4 mt-2 border-t border-brand-light-gray/60 flex flex-col space-y-3">
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  handleNavClick(e, '#contact');
-                  if (onOpenContact) onOpenContact();
-                }}
+              <Link
+                to="/contact"
+                onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-center py-3 rounded-full bg-gradient-to-r from-brand-blue to-brand-cyan text-white text-sm font-semibold shadow-brand"
               >
                 Let's Talk
-              </a>
+              </Link>
               <div className="flex items-center justify-center space-x-4 text-xs text-brand-charcoal/70 pt-2">
                 <a href={`tel:${COMPANY_INFO.phone.replace(/[^0-9+]/g, '')}`} className="flex items-center space-x-1">
                   <Phone className="w-3.5 h-3.5 text-brand-blue" />
