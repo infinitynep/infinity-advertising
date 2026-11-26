@@ -23,16 +23,6 @@ export const SISTER_FACILITIES = [
     name: "Dream Vision Studio",
     location: "Thamel, Kathmandu",
     specialty: "Audio-visual production, commercial photography, TVC studio setups and digital reel recording."
-  },
-  {
-    name: "National Offset",
-    location: "Bafal, Kathmandu",
-    specialty: "High-volume commercial offset printing press, color catalogs, annual reports and packaging boxes."
-  },
-  {
-    name: "Maya Screen Print",
-    location: "Bagbazar, Kathmandu",
-    specialty: "Specialty screen printing, promotional merchandise, textile banners, and point-of-purchase branding."
   }
 ];
 
@@ -196,7 +186,7 @@ export const PROCESS_STEPS = [
     step: "04",
     name: "EXECUTE",
     title: "Technical Production & Quality Craft",
-    description: "Our in-house production units, offset press partners, and audio-visual studios bring concepts to reality with rigorous color management and high fidelity standards.",
+    description: "Our in-house production units, creative designers, and audio-visual studios bring concepts to reality with rigorous quality management and high fidelity standards.",
     icon: "Layers"
   },
   {
@@ -305,7 +295,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     category: "Branding",
     image: "/assets/portfolio/5.jpg",
     additionalImages: ["/assets/portfolio/6.jpg"],
-    summary: "Bespoke corporate calendar featuring heritage cultural photography and premium textured offset finishing.",
+    summary: "Bespoke corporate calendar featuring heritage cultural photography and premium textured print finishing.",
     challenge: "Creating an end-of-year corporate gift that maintains daily desk presence throughout all 12 months.",
     solution: "Curated fine-art photography with cultural historical commentary, printed with spot UV varnish on heavy matte art paper.",
     deliverables: ["12-Leaf Desk Calendar", "Large Hanging Wall Calendar", "Custom Embossed Envelopes"],

@@ -48,7 +48,7 @@ export const About: React.FC<AboutProps> = () => {
     },
     {
       title: "Technical Execution",
-      desc: "Precision in audio-visual production, pre-press calibration, and high-fidelity offset printing.",
+      desc: "Precision in audio-visual production, creative styling, and high-fidelity campaign execution.",
       icon: Printer,
       color: "text-brand-cyan"
     },
@@ -117,7 +117,7 @@ export const About: React.FC<AboutProps> = () => {
                 onClick={() => setShowSisterEntities(!showSisterEntities)}
                 className="inline-flex items-center space-x-2 text-sm font-semibold text-brand-blue hover:text-brand-cyan transition-colors"
               >
-                <span>{showSisterEntities ? 'Hide In-House Production Facilities' : 'Explore In-House Production & Studio Facilities'}</span>
+                <span>{showSisterEntities ? 'Hide Audio-Visual Studio Facility' : 'Explore Dedicated Audio-Visual Studio Facility'}</span>
                 {showSisterEntities ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
               </button>
             </div>
@@ -156,7 +156,7 @@ export const About: React.FC<AboutProps> = () => {
                     <Video className="w-5 h-5 text-brand-cyan shrink-0 mt-0.5" />
                     <div>
                       <div className="text-xs text-white/60">Production Ecosystem</div>
-                      <div className="text-sm font-medium text-white">Dedicated Audio-Visual Studio, Offset Printing & Screen Printing Facilities</div>
+                      <div className="text-sm font-medium text-white">Dedicated Audio-Visual Studio & Creative Production Facilities</div>
                     </div>
                   </div>
                 </div>
@@ -182,13 +182,13 @@ export const About: React.FC<AboutProps> = () => {
         {showSisterEntities && (
           <div className="mt-12 pt-8 border-t border-brand-light-gray transition-all duration-300">
             <div className="mb-6">
-              <h3 className="text-xl font-bold text-brand-charcoal">In-House Technical & Production Ecosystem</h3>
+              <h3 className="text-xl font-bold text-brand-charcoal">Audio-Visual Production & Studio Setup</h3>
               <p className="text-sm text-brand-charcoal/70">
-                To guarantee uncompromising execution speed and print fidelity, Infinity operates alongside specialized production facilities in Kathmandu:
+                To guarantee uncompromising audio-visual fidelity, TVC production, and commercial photography:
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {SISTER_FACILITIES.map((facility, index) => (
                 <div key={index} className="p-6 rounded-2xl bg-white border border-brand-light-gray shadow-card hover:border-brand-blue/30 transition-all">
                   <div className="flex items-center justify-between mb-3">
